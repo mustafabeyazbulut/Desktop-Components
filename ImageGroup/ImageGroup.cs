@@ -118,7 +118,7 @@ namespace WindowsFormsApplication1
                 this.BackColor = value;
             }
         }
-        private Color imageGroupHoverColor = Color.Red;
+        private Color imageGroupHoverColor = Color.DodgerBlue;
         [Category("Özellikler")]
         [Browsable(true)]
         public Color ImageGroupHoverColor

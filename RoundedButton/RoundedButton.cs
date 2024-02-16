@@ -77,6 +77,7 @@ public class RoundedButton : Button
         UpdateRegion();
         this.Font = new System.Drawing.Font(this.Font.FontFamily, 14); // İhtiyaca göre değiştirilebilir
         this.Size = new Size(150, 50); // İhtiyaca göre değiştirilebilir
+        this.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
     }
 
     private void UpdateRegion()
@@ -85,15 +86,7 @@ public class RoundedButton : Button
 
         if (borderOnRadius)
         {
-            // Köşeleri yuvarlanmış bir dikdörtgenin yolunu oluşturun
-            path.AddArc(0, 0, radius * 2, radius * 2, 180, 90);
-            path.AddLine(radius, 0, this.Width - radius, 0);
-            path.AddArc(this.Width - 2 * radius, 0, radius * 2, radius * 2, 270, 90);
-            path.AddLine(this.Width, radius, this.Width, this.Height - radius);
-            path.AddArc(this.Width - 2 * radius, this.Height - 2 * radius, radius * 2, radius * 2, 0, 90);
-            path.AddLine(this.Width - radius, this.Height, radius, this.Height);
-            path.AddArc(0, this.Height - 2 * radius, radius * 2, radius * 2, 90, 90);
-            path.AddLine(0, this.Height - radius, 0, radius);
+          path=  GetRoundedRectanglePath();
         }
         else
         {
@@ -126,13 +119,13 @@ public class RoundedButton : Button
         System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
 
         // Köşeleri yuvarlanmış bir dikdörtgenin yolunu oluşturun
-        path.AddArc(0, 0, radius * 2, radius * 2, 180, 90);
-        path.AddLine(radius, 0, this.Width - radius, 0);
-        path.AddArc(this.Width - 2 * radius, 0, radius * 2, radius * 2, 270, 90);
+        path.AddArc(0, 0, radius * 2, radius * 2, 180, 90); // sol üst kenar
+        path.AddLine(radius-10, 0, this.Width - radius, 0);
+        path.AddArc(this.Width - 2 * radius, 0, radius * 2, radius * 2, 270, 90);// sağ üst kenar
         path.AddLine(this.Width, radius, this.Width, this.Height - radius);
-        path.AddArc(this.Width - 2 * radius, this.Height - 2 * radius, radius * 2, radius * 2, 0, 90);
+        path.AddArc(this.Width - 2 * radius, this.Height - 2 * radius, radius * 2, radius * 2, 0, 90); // sağ alt kenar
         path.AddLine(this.Width - radius, this.Height, radius, this.Height);
-        path.AddArc(0, this.Height - 2 * radius, radius * 2, radius * 2, 90, 90);
+        path.AddArc(0, this.Height - 2 * radius, radius * 2, radius * 2, 90, 90);// sol alt kenar
         path.AddLine(0, this.Height - radius, 0, radius);
 
         return path;
